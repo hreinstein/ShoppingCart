@@ -30,6 +30,8 @@ products = [
 
 #info inputs
 
+total_price = 0
+
 while True:
     id_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is for a string or word "DONE"
     if id_input == "DONE":
@@ -37,15 +39,15 @@ while True:
     else:
         matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
         matching_product = matching_products[0]
+        total_price = total_price + matching_product["price"]
         print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
     
+
+#info outputs 
+
+print("TOTAL PRICE: " + str(total_price)) #FORMAT AS USD
+
     
-    
-    #print(matching_product)
-    #print(type(matching_product))
-
-
-
 #p=input("Please input a product identifier, or 'DONE' if there are no more items: ")  
 
   #  input("Please input a product identifier, or 'DONE' if there are no more items: "))
@@ -54,11 +56,6 @@ while True:
   #  p=input("Please input a product identifier, or 'DONE' if there are no more items: ")
   #  if p == 'DONE':
      #   print("You are done")
-
-#info outputs 
-    
-    
-
 
 
 #print(products)
