@@ -25,13 +25,25 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-print(products)
+#print(products)
 
 
 #info inputs
-id_input = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-print(id_input)
-print(type(id_input))
+
+while True:
+    id_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is for a string or word "DONE"
+    if id_input == "DONE":
+        break
+    else:
+        matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
+        matching_product = matching_products[0]
+        print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
+    
+    
+    
+    #print(matching_product)
+    #print(type(matching_product))
+
 
 
 #p=input("Please input a product identifier, or 'DONE' if there are no more items: ")  
