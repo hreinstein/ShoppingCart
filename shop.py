@@ -29,19 +29,23 @@ products = [
 
 total_price = 0
 id_inputs = []
-tax = 0.06 #tax rate info taken from: https://smartasset.com/taxes/district-of-columbia-tax-calculator
+tax = 0.0875 #NY City sales tax rate from: https://github.com/prof-rossetti/intro-to-python/blob/master/projects/shopping-cart/README.md
 
 print()
 print("Welcome to Dreyger's Market")
 print()
 
+valid_inputs = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
+
 while True:
     id_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is for a string or word "DONE"
     if id_input == "DONE":
         break
-    else:
+    elif id_input in valid_inputs:
         id_inputs.append(id_input)
-
+    else: 
+        print("Please enter a valid product ID")
+        
 #--------------------------------------------------------------------
 #Reciept
 
@@ -101,3 +105,5 @@ print("----------------------------------------")
 
 #TODO 
 # Friendly error message when ID is not in 1-20 range or any string other than 'DONE' 
+#detecting invalid inputs in slides 
+
