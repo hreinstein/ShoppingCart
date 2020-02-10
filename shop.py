@@ -1,7 +1,7 @@
 # shop.py
 from pprint import pprint
 import datetime
-import os 
+
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -99,16 +99,5 @@ print("----------------------------------------")
 #--------------------------------------------------------------------------------------------
 
 
-#TODO print a grocery store name of your choice
-# grocery store phone number and or website URL and or address of choice
-# Date and time of the beggining of the checkout process, formatted ...
-# name and price of each shopping cart items, formatted as US DOllars ...
-# total cost of all shopping cart items, USD
-# amount of tax owed, multiply total cost by DC rate??
-# total amount owed, formatted as USD, calc by ...?
-# a friendly message thanking the customer and/or encouraging the customer to shop 
-
-
-#Date/Time
-#Currency 
-#Tax 
+#TODO 
+# Friendly error message when ID is not in 1-20 range or any string other than 'DONE' 
