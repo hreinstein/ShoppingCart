@@ -1,6 +1,7 @@
 # shop.py
-
-#from pprint import pprint
+from pprint import pprint
+import datetime
+import os 
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -24,41 +25,90 @@ products = [
     {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
-
-#print(products)
-
-
 #info inputs
 
 total_price = 0
+id_inputs = []
+tax = 0.06 #tax rate info taken from: https://smartasset.com/taxes/district-of-columbia-tax-calculator
+
+print()
+print("Welcome to Dreyger's Market")
+print()
 
 while True:
     id_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is for a string or word "DONE"
     if id_input == "DONE":
         break
     else:
-        matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
-        matching_product = matching_products[0]
-        total_price = total_price + matching_product["price"]
-        print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
-    
+        id_inputs.append(id_input)
 
-#info outputs 
+#--------------------------------------------------------------------
+#Reciept
 
-print("TOTAL PRICE: " + str(total_price)) #FORMAT AS USD
-
-    
-#p=input("Please input a product identifier, or 'DONE' if there are no more items: ")  
-
-  #  input("Please input a product identifier, or 'DONE' if there are no more items: "))
-
-#while p != 'DONE': 
-  #  p=input("Please input a product identifier, or 'DONE' if there are no more items: ")
-  #  if p == 'DONE':
-     #   print("You are done")
+print()
+print("----------------------------------------")
+print("DREYGER'S MARKET")
+print("----------------------------------------")
+print("WEBSITE: www.dreygersmarket.com")
+print("PHONE NUMBER: 713-832-4740")
 
 
-#print(products)
-# pprint(products)
+#date and time 
+today = datetime.datetime.today()
+print("CHECKOUT TIME: ", today.strftime("%m/%d/%Y %I:%M %p"))
+print("----------------------------------------")
 
-# TODO: write some Python code here to produce the desired output
+
+#shopping cart items 
+print("SELECTED ITEMS: ")
+print()
+
+for id_input in id_inputs:
+     matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
+     matching_product = matching_products[0]
+     total_price = total_price + matching_product["price"]
+     formatted_total_price = "${0:.2f}".format(matching_product["price"]) #created a variable to format the prices from the products list 
+     print(matching_product["name"] + " " + "(" + formatted_total_price + ")")
+
+print()
+print("----------------------------------------")
+
+#calculations
+sales_tax = total_price * tax 
+final_total = total_price + sales_tax
+
+#subtotal
+total_price = "${0:.2f}".format(total_price)
+print("SUBTOTAL: ", str(total_price)) 
+
+#sales tax 
+sales_tax = "${0:.2f}".format(sales_tax)
+print("SALES TAX (6.00%): ", sales_tax)
+
+#final total  
+final_total = "${0:.2f}".format(final_total)
+print("TOTAL: ", str(final_total))
+
+#thank you message 
+print("----------------------------------------")
+print()
+print("Thank you for doing business with us! Please come again soon.")
+print()
+print("----------------------------------------")
+
+#--------------------------------------------------------------------------------------------
+
+
+#TODO print a grocery store name of your choice
+# grocery store phone number and or website URL and or address of choice
+# Date and time of the beggining of the checkout process, formatted ...
+# name and price of each shopping cart items, formatted as US DOllars ...
+# total cost of all shopping cart items, USD
+# amount of tax owed, multiply total cost by DC rate??
+# total amount owed, formatted as USD, calc by ...?
+# a friendly message thanking the customer and/or encouraging the customer to shop 
+
+
+#Date/Time
+#Currency 
+#Tax 
