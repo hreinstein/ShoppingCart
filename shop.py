@@ -45,7 +45,7 @@ while True:
         id_inputs.append(id_input)
     else: 
         print("Please enter a valid product ID")
-        
+
 #--------------------------------------------------------------------
 #Reciept
 
@@ -87,10 +87,11 @@ print("SUBTOTAL: ", str(total_price))
 
 #sales tax 
 sales_tax = "${0:.2f}".format(sales_tax)
-print("SALES TAX (6.00%): ", sales_tax)
+print("SALES TAX (8.75%): ", sales_tax)
 
 #final total  
 final_total = "${0:.2f}".format(final_total)
+print()
 print("TOTAL: ", str(final_total))
 
 #thank you message 

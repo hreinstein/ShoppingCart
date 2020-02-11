@@ -1,24 +1,28 @@
-# ShoppingCart
- 
-#write instructions here 
-#see examples on github 
+# Shopping Cart Project 
 
-#how to download it
-#cd
-#environment set up 
-#how to install it 
-#what is the python command 
+## Project Description 
+https://github.com/prof-rossetti/intro-to-python/tree/master/projects/shopping-cart
 
 
-#how to use the program (packages or python commands they should use)
-
-## Installation
-
-### SetUp 
+### Installation
+Fork the project repository.
+Clone the repo to download it to your local GitHub Desktop. 
 
 
-``` sh
-cd my repo 
+After cloning the repository, navigate there from the command-line:
+```sh
+cd ~/Desktop/Your_File_Name
 ```
 
-#### Usage 
+#### Environment Setup
+Create and activate a new Anaconda virtual environment:
+
+conda create -n shopping-env python=3.7 # (first time only)
+conda activate shopping-env
+
+##### Usage
+Run the python script from the command line using the python command: 
+
+```sh
+python shop.py
+```
