@@ -8,7 +8,7 @@ https://github.com/hreinstein/ShoppingCart
 
 ## Installation
 Fork the project repository.
-Clone the repo to download it to your local GitHub Desktop. 
+Then, clone the repo to download it to your local GitHub Desktop. 
 
 
 After cloning the repository, navigate there from the command-line:
