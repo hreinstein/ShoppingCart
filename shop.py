@@ -104,7 +104,5 @@ print("----------------------------------------")
 #--------------------------------------------------------------------------------------------
 
 
-#TODO 
-# Friendly error message when ID is not in 1-20 range or any string other than 'DONE' 
-#detecting invalid inputs in slides 
+
 
