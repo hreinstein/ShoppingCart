@@ -24,6 +24,13 @@ conda create -n shopping-env python=3.7 # (first time only)
 conda activate shopping-env
 ```
 
+## Install Packages
+Please install the following packages to run your code:
+
+```sh
+pip install pytest
+```
+
 ## Usage
 Run the python script from the command line using the python command: 
 
