@@ -2,6 +2,21 @@
 from pprint import pprint
 import datetime
 
+def to_usd(my_price):
+    """
+    Converts a numeric value to usd-formatted string, for printing and display purposes. 
+    
+    Param: my_price (int or float) like 20.2222
+
+    Example: to usd(20.2222)
+    Returns: $20.22
+    """
+    return f"${my_price:,.2f}"
+
+total_price = 0
+id_inputs = []
+tax = 0.0875 #NY City sales tax rate from: https://github.com/prof-rossetti/intro-to-python/blob/master/projects/shopping-cart/README.md
+#--------------------------------------------------------------------
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -27,13 +42,7 @@ products = [
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 #info inputs
 
-total_price = 0
-id_inputs = []
-tax = 0.0875 #NY City sales tax rate from: https://github.com/prof-rossetti/intro-to-python/blob/master/projects/shopping-cart/README.md
-
-print()
 print("Welcome to Dreyger's Market")
-print()
 
 valid_inputs = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
 
@@ -49,7 +58,6 @@ while True:
 #--------------------------------------------------------------------
 #Reciept
 
-print()
 print("----------------------------------------")
 print("DREYGER'S MARKET")
 print("----------------------------------------")
@@ -65,16 +73,16 @@ print("----------------------------------------")
 
 #shopping cart items 
 print("SELECTED ITEMS: ")
-print()
+
+
 
 for id_input in id_inputs:
      matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
      matching_product = matching_products[0]
      total_price = total_price + matching_product["price"]
-     formatted_total_price = "${0:.2f}".format(matching_product["price"]) #created a variable to format the prices from the products list 
-     print(matching_product["name"] + " " + "(" + formatted_total_price + ")")
+     #formatted_total_price = to_usd(matching_product["price"]) #created a variable to format the prices from the products list 
+     print(matching_product["name"] + "   " + to_usd(matching_product["price"]))#"(" + formatted_total_price + ")")
 
-print()
 print("----------------------------------------")
 
 #calculations
@@ -82,26 +90,22 @@ sales_tax = total_price * tax
 final_total = total_price + sales_tax
 
 #subtotal
-total_price = "${0:.2f}".format(total_price)
+total_price = to_usd(total_price)
 print("SUBTOTAL: ", str(total_price)) 
 
 #sales tax 
-sales_tax = "${0:.2f}".format(sales_tax)
+sales_tax = to_usd(sales_tax)
 print("SALES TAX (8.75%): ", sales_tax)
 
 #final total  
-final_total = "${0:.2f}".format(final_total)
-print()
+final_total = to_usd(final_total)
 print("TOTAL: ", str(final_total))
 
 #thank you message 
 print("----------------------------------------")
-print()
 print("Thank you for doing business with us! Please come again soon.")
-print()
 print("----------------------------------------")
 
-#--------------------------------------------------------------------------------------------
 
 
 
