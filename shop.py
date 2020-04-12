@@ -1,7 +1,10 @@
 # shop.py
-from pprint import pprint
-import datetime
 
+from pprint import pprint
+from datetime import datetime
+
+
+# function for price to be used in script
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes. 
@@ -13,10 +16,21 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}"
 
+# function for dates and times to be used in script
+def human_friendly(my_datetime):
+    """
+    Converts a date time object into a human-friendly string
+    Param: my_datetime (datetime.datetime object)
+    """
+    formatted_datestring = my_datetime.strftime("%Y-%m-%d %H:%M:%S")
+    return f"Checkout at: {formatted_datestring}"
+
+
+# define Variables to be used in script
 total_price = 0
 id_inputs = []
 tax = 0.0875 #NY City sales tax rate from: https://github.com/prof-rossetti/intro-to-python/blob/master/projects/shopping-cart/README.md
-#--------------------------------------------------------------------
+
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -55,8 +69,31 @@ while True:
     else: 
         print("Please enter a valid product ID")
 
-#--------------------------------------------------------------------
-#Print Reciept
+
+#Reciept Calculations
+
+for id_input in id_inputs:
+     matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
+     matching_product = matching_products[0]
+     total_price = total_price + matching_product["price"] 
+     reciept += matching_product["name"] + "   " + to_usd(matching_product["price"])
+
+sales_tax = total_price * tax 
+final_total = total_price + sales_tax
+
+#subtotal
+total_price = to_usd(total_price)
+
+#sales tax 
+sales_tax = to_usd(sales_tax)
+
+#final total  
+final_total = to_usd(final_total)
+
+
+#---------------------------------------------------------------------------------------------
+
+#Print Reciept 
 
 reciept = ""
 
@@ -65,45 +102,16 @@ reciept += "\nDREYGER'S MARKET"
 reciept += "\n----------------------------------------"
 reciept += "\nWEBSITE: www.dreygersmarket.com"
 reciept += "\nPHONE NUMBER: 713-832-4740"
-
-#date and time 
-today = datetime.datetime.today()
-reciept += "\nCHECKOUT TIME: " + str(today.strftime("%m/%d/%Y %I:%M %p"))
+if __name__ == "__main__":
+    reciept += "\n" + human_friendly(datetime.now()) 
 reciept += "\n----------------------------------------"
-
-#shopping cart items 
 reciept += "\nSELECTED ITEMS: "
-
-for id_input in id_inputs:
-     matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
-     matching_product = matching_products[0]
-     total_price = total_price + matching_product["price"] 
-     reciept += matching_product["name"] + "   " + to_usd(matching_product["price"])#"(" + formatted_total_price + ")")
-
 reciept += "\n----------------------------------------"
-
-#calculations
-sales_tax = total_price * tax 
-final_total = total_price + sales_tax
-
-#subtotal
-total_price = to_usd(total_price)
 reciept += "\nSUBTOTAL: " + str(total_price)
-
-#sales tax 
-sales_tax = to_usd(sales_tax)
-reciept += "\nSALES TAX (8.75%): " + str(sales_tax)
-
-#final total  
-final_total = to_usd(final_total)
+reciept += "\nSALES TAX: " + str(sales_tax)
 reciept += "\nTOTAL: " + str(final_total)
-
-#thank you message 
 reciept += "\n----------------------------------------"
 reciept += "\nThank you for doing business with us! Please come again soon."
 reciept += "\n----------------------------------------"
 
 print(reciept)
-
-
-
