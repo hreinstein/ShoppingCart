@@ -35,5 +35,12 @@ pip install pytest
 Run the python script from the command line using the python command: 
 
 ```sh
-python shop.py
+python app/shop.py
+```
+
+## Testing 
+Run the test: 
+
+```sh
+pytest
 ```

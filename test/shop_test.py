@@ -1,6 +1,6 @@
 #shop_test.py 
 
-from shop import to_usd
+from app.shop import to_usd
 
 my_number = 22.2222
 

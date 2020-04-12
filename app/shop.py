@@ -86,8 +86,8 @@ reciept += "\nDREYGER'S MARKET"
 reciept += "\n----------------------------------------"
 reciept += "\nWEBSITE: www.dreygersmarket.com"
 reciept += "\nPHONE NUMBER: 713-832-4740"
-if __name__ == "__main__":
-    reciept += "\n" + human_friendly(datetime.now()) 
+#if __name__ == "__main__":
+reciept += "\n" + human_friendly(datetime.now()) 
 reciept += "\n----------------------------------------"
 reciept += "\nSELECTED ITEMS: "
 reciept += "\n----------------------------------------"
