@@ -1,6 +1,6 @@
 #shop_test.py 
-
-from app.shop import to_usd, tax_rate, human_friendly
+import pytest
+from app.shop import to_usd, tax_rate, find_product
 
 
 def test_to_usd():
@@ -22,3 +22,17 @@ def test_tax_rate():
 
 
 
+def test_find_product():
+    products = [
+        {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
+        {"id":3, "name": "Robust Golden Unsweetened Oolong Tea", "department": "beverages", "aisle": "tea", "price": 2.49},
+        {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
+    ]
+
+    # if there is a match, it should find and return a product
+    matching_product = find_product("2", products)
+    assert matching_product["name"] == "All-Seasons Salt"
+
+    # if there is no match, it should raise an IndexError
+    with pytest.raises(IndexError):
+        find_product("2222", products)

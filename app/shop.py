@@ -1,10 +1,12 @@
 # shop.py
 
 from pprint import pprint
-from datetime import datetime
+import datetime as dt
 
 
-# functions for price and date/time to be used in script
+tax_rate = 0.0875 #NY City sales tax rate from: https://github.com/prof-rossetti/intro-to-python/blob/master/projects/shopping-cart/README.md
+
+# converts float or integer to usd formatted string 
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes. 
@@ -16,19 +18,12 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}"
 
-def human_friendly(my_datetime):
-    """
-    Converts a date time object into a human-friendly string
-    Param: my_datetime (datetime.datetime object)
-    """
-    formatted_datestring = my_datetime.strftime("%Y-%m-%d %H:%M:%S")
-    return f"Checkout at: {formatted_datestring}"
+#looks up product given a unique identifier 
+def find_product(product_id, all_products):
+    matching_products = [p for p in all_products if str(p["id"]) == str(product_id)]
+    matching_product = matching_products[0]
+    return matching_product
 
-
-# define variables to be used in script
-total_price = 0
-id_inputs = []
-tax_rate = 0.0875 #NY City sales tax rate from: https://github.com/prof-rossetti/intro-to-python/blob/master/projects/shopping-cart/README.md
 
 if __name__ == "__main__":
 
@@ -57,6 +52,10 @@ if __name__ == "__main__":
 
     # INFO INPUTS
 
+    total_price = 0
+    id_inputs = []
+    checkout_time = dt.datetime.now() # current date and time, see: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/modules/datetime.md
+
     print("Welcome to Dreyger's Market")
 
     valid_inputs = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
@@ -80,15 +79,14 @@ if __name__ == "__main__":
     reciept += "\n----------------------------------------"
     reciept += "\nWEBSITE: www.dreygersmarket.com"
     reciept += "\nPHONE NUMBER: 713-832-4740"
-    reciept += "\n" + human_friendly(datetime.now()) # current date and time, see: https://github.com/prof-rossetti/georgetown-opim-243-201901/blob/master/notes/python/modules/datetime.md
+    reciept += "\n" + "CHECKOUT TIME: " + checkout_time.strftime("%Y-%m-%d %I:%M %p") 
     reciept += "\n----------------------------------------"
     reciept += "\nSELECTED ITEMS: "
 
     for id_input in id_inputs:
-     matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
-     matching_product = matching_products[0]
-     total_price = total_price + matching_product["price"] 
-     reciept += "\n" + matching_product["name"] + "   " + "(" + to_usd(matching_product["price"]) + ")"
+        matching_product = find_product(id_input, products)
+        total_price = total_price + matching_product["price"] 
+        reciept += "\n" + matching_product["name"] + "   " + "(" + to_usd(matching_product["price"]) + ")"
     
     reciept += "\n----------------------------------------"
     reciept += f"\nSUBTOTAL: {to_usd(total_price)}"
