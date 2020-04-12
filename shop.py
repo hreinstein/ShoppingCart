@@ -4,7 +4,7 @@ from pprint import pprint
 from datetime import datetime
 
 
-# function for price to be used in script
+# functions for price and date/time to be used in script
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes. 
@@ -16,7 +16,6 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}"
 
-# function for dates and times to be used in script
 def human_friendly(my_datetime):
     """
     Converts a date time object into a human-friendly string
@@ -26,7 +25,7 @@ def human_friendly(my_datetime):
     return f"Checkout at: {formatted_datestring}"
 
 
-# define Variables to be used in script
+# define variables to be used in script
 total_price = 0
 id_inputs = []
 tax = 0.0875 #NY City sales tax rate from: https://github.com/prof-rossetti/intro-to-python/blob/master/projects/shopping-cart/README.md
@@ -60,42 +59,27 @@ print("Welcome to Dreyger's Market")
 
 valid_inputs = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
 
-while True:
-    id_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is for a string or word "DONE"
-    if id_input == "DONE":
-        break
-    elif id_input in valid_inputs:
-        id_inputs.append(id_input)
-    else: 
-        print("Please enter a valid product ID")
+if __name__ == "__main__":
+    while True:
+        id_input = input("Please input a product identifier, or 'DONE' if there are no more items: ") #this is for a string or word "DONE"
+        if id_input == "DONE":
+            break
+        elif id_input in valid_inputs:
+            id_inputs.append(id_input)
+        else: 
+            print("Please enter a valid product ID")
 
+#-------------------------------------------------------------------------------------------------------------------------------------------
 
-#Reciept Calculations
+#Print Reciept 
+
+reciept = ""
 
 for id_input in id_inputs:
      matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
      matching_product = matching_products[0]
      total_price = total_price + matching_product["price"] 
      reciept += matching_product["name"] + "   " + to_usd(matching_product["price"])
-
-sales_tax = total_price * tax 
-final_total = total_price + sales_tax
-
-#subtotal
-total_price = to_usd(total_price)
-
-#sales tax 
-sales_tax = to_usd(sales_tax)
-
-#final total  
-final_total = to_usd(final_total)
-
-
-#---------------------------------------------------------------------------------------------
-
-#Print Reciept 
-
-reciept = ""
 
 reciept += "\n----------------------------------------"
 reciept += "\nDREYGER'S MARKET"
@@ -107,9 +91,9 @@ if __name__ == "__main__":
 reciept += "\n----------------------------------------"
 reciept += "\nSELECTED ITEMS: "
 reciept += "\n----------------------------------------"
-reciept += "\nSUBTOTAL: " + str(total_price)
-reciept += "\nSALES TAX: " + str(sales_tax)
-reciept += "\nTOTAL: " + str(final_total)
+reciept += f"\nSUBTOTAL: {to_usd(total_price)}"
+reciept += f"\nSALES TAX: {to_usd(total_price * tax)}" 
+reciept += f"\nTOTAL: {to_usd(total_price + (total_price * tax))}"
 reciept += "\n----------------------------------------"
 reciept += "\nThank you for doing business with us! Please come again soon."
 reciept += "\n----------------------------------------"
