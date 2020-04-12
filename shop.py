@@ -56,34 +56,31 @@ while True:
         print("Please enter a valid product ID")
 
 #--------------------------------------------------------------------
-#Reciept
+#Print Reciept
 
-print("----------------------------------------")
-print("DREYGER'S MARKET")
-print("----------------------------------------")
-print("WEBSITE: www.dreygersmarket.com")
-print("PHONE NUMBER: 713-832-4740")
+reciept = ""
 
+reciept += "\n----------------------------------------"
+reciept += "\nDREYGER'S MARKET"
+reciept += "\n----------------------------------------"
+reciept += "\nWEBSITE: www.dreygersmarket.com"
+reciept += "\nPHONE NUMBER: 713-832-4740"
 
 #date and time 
 today = datetime.datetime.today()
-print("CHECKOUT TIME: ", today.strftime("%m/%d/%Y %I:%M %p"))
-print("----------------------------------------")
-
+reciept += "\nCHECKOUT TIME: " + str(today.strftime("%m/%d/%Y %I:%M %p"))
+reciept += "\n----------------------------------------"
 
 #shopping cart items 
-print("SELECTED ITEMS: ")
-
-
+reciept += "\nSELECTED ITEMS: "
 
 for id_input in id_inputs:
      matching_products = [p for p in products if str(p["id"]) == str(id_input)] #need to compare values of like data types
      matching_product = matching_products[0]
-     total_price = total_price + matching_product["price"]
-     #formatted_total_price = to_usd(matching_product["price"]) #created a variable to format the prices from the products list 
-     print(matching_product["name"] + "   " + to_usd(matching_product["price"]))#"(" + formatted_total_price + ")")
+     total_price = total_price + matching_product["price"] 
+     reciept += matching_product["name"] + "   " + to_usd(matching_product["price"])#"(" + formatted_total_price + ")")
 
-print("----------------------------------------")
+reciept += "\n----------------------------------------"
 
 #calculations
 sales_tax = total_price * tax 
@@ -91,22 +88,22 @@ final_total = total_price + sales_tax
 
 #subtotal
 total_price = to_usd(total_price)
-print("SUBTOTAL: ", str(total_price)) 
+reciept += "\nSUBTOTAL: " + str(total_price)
 
 #sales tax 
 sales_tax = to_usd(sales_tax)
-print("SALES TAX (8.75%): ", sales_tax)
+reciept += "\nSALES TAX (8.75%): " + str(sales_tax)
 
 #final total  
 final_total = to_usd(final_total)
-print("TOTAL: ", str(final_total))
+reciept += "\nTOTAL: " + str(final_total)
 
 #thank you message 
-print("----------------------------------------")
-print("Thank you for doing business with us! Please come again soon.")
-print("----------------------------------------")
+reciept += "\n----------------------------------------"
+reciept += "\nThank you for doing business with us! Please come again soon."
+reciept += "\n----------------------------------------"
 
-
+print(reciept)
 
 
 
