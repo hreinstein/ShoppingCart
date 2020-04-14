@@ -1,10 +1,10 @@
 # Shopping Cart Project 
 
 ## Project Description 
-https://github.com/prof-rossetti/intro-to-python/tree/master/projects/shopping-cart
+https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/codebase-cleanup/README.md
 
 ### File Location
-https://github.com/hreinstein/ShoppingCart
+https://github.com/hreinstein/ShoppingCart/tree/shop-cleanup
 
 ## Installation
 Fork the project repository.
